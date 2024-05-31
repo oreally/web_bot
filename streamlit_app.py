@@ -15,7 +15,10 @@ with st.sidebar:
         hf_pass = st.text_input('Passwort:', type='password')
         if not (hf_email and hf_pass):
             st.warning('Bitte einloggen!', icon='⚠️')
+        elif (hf_email != st.secrets['EMAIL']) | (hf_pass != st.secrets['PASS']):
+            st.warning('E-mail oder Passwort sind falsch!', icon='⚠️')
         else:
+            hf_token = st.secrets['HF_TOKEN']
             st.success('Jetzt chatten!', icon='👉')
             
     st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
