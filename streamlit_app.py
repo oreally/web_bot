@@ -51,7 +51,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
-              "param_grid": {"max_tokens": 500, "temperature": 0.6},
+              "param_grid": {"max_tokens": 1000, "temperature": 0.6},
               "options": {"wait_for_model": True}}
             response = generate_response(prompt_input, hf_token) 
             st.write(response) 
