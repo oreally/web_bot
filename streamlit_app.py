@@ -27,9 +27,12 @@ for message in st.session_state.messages:
         st.write(message["content"])
 
 # Function for generating LLM response
-def generate_response(prompt_input, hf_token):
+def generate_response(prompt, hf_token):
     headers = {"Authorization": f"Bearer {hf_token}"}
     API_URL = "https://lucom7fjkrjfxwyk.us-east-1.aws.endpoints.huggingface.cloud" 
+    prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
+              "param_grid": {"max_tokens": 1000, "temperature": 0.6},
+              "options": {"wait_for_model": True}}
     response = requests.post(API_URL, headers=headers, json=prompt_input)
     return response.json()[0]['generated_text'].replace(prompt_input['inputs'], '')
 
@@ -43,10 +46,7 @@ if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
-              "param_grid": {"max_tokens": 1000, "temperature": 0.6},
-              "options": {"wait_for_model": True}}
-            response = generate_response(prompt_input, hf_token) 
+            response = generate_response(prompt, hf_token) 
             st.write(response) 
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
