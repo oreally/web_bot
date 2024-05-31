@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 st.set_page_config(page_title="💬 Web Bot")
 
@@ -33,7 +34,7 @@ def generate_response(prompt_input, hf_token):
     headers = {"Authorization": f"Bearer {hf_token}"}
     API_URL = "https://lucom7fjkrjfxwyk.us-east-1.aws.endpoints.huggingface.cloud" 
     response = requests.post(API_URL, headers=headers, json=prompt_input)
-    return response.json()[0]['generated_text'].replace(prompt_input, '')
+    return response.json()[0]['generated_text'].replace(prompt_input['inputs'], '')
 
 # User-provided prompt
 if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
