@@ -6,22 +6,22 @@ st.set_page_config(page_title="💬 Web Bot")
 with st.sidebar:
     st.title('💬 Web Bot')
     st.markdown(st.secrets)
-    if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
-        st.success('Login erfolgreich!', icon='✅')
-        hf_email = st.secrets['EMAIL']
-        hf_pass = st.secrets['PASSWORD']
-        hf_token = st.secrets['HF_TOKEN']
+    # if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
+    #     st.success('Login erfolgreich!', icon='✅')
+    #     hf_email = st.secrets['EMAIL']
+    #     hf_pass = st.secrets['PASSWORD']
+    #     hf_token = st.secrets['HF_TOKEN']
+    # else:
+    hf_email = st.text_input('E-mail:', type='password')
+    hf_pass = st.text_input('Passwort:', type='password')
+    if not (hf_email and hf_pass):
+        st.warning('Bitte einloggen!', icon='⚠️')
+    elif (hf_email != st.secrets['EMAIL']) | (hf_pass != st.secrets['PASSWORD']):
+        st.warning('E-mail oder Passwort sind falsch!', icon='⚠️')
     else:
-        hf_email = st.text_input('E-mail:', type='password')
-        hf_pass = st.text_input('Passwort:', type='password')
-        if not (hf_email and hf_pass):
-            st.warning('Bitte einloggen!', icon='⚠️')
-        elif (hf_email != st.secrets['EMAIL']) | (hf_pass != st.secrets['PASSWORD']):
-            st.warning('E-mail oder Passwort sind falsch!', icon='⚠️')
-        else:
-            hf_token = st.secrets['HF_TOKEN']
-            st.success('Jetzt chatten!', icon='👉')
-            
+        hf_token = st.secrets['HF_TOKEN']
+        st.success('Jetzt chatten!', icon='👉')
+        
     st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
 
 # Store LLM generated responses
