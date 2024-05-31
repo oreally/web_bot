@@ -33,8 +33,11 @@ def generate_response(prompt, hf_token):
               "Content-Type": "application/json" }
     API_URL = "https://lucom7fjkrjfxwyk.us-east-1.aws.endpoints.huggingface.cloud" 
     prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
-              "param_grid": {"max_tokens": 1000, "temperature": 0.6},
-              "options": {"wait_for_model": True}}
+                      "parameters": {
+                    		"temperature": 0.6,
+                    		"max_new_tokens": 1000
+                    	},
+                      "options": {"wait_for_model": True}}
     response = requests.post(API_URL, headers=headers, json=prompt_input)
     return response.json()[0]['generated_text'].replace(prompt_input['inputs'], '')
 
