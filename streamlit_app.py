@@ -28,7 +28,9 @@ for message in st.session_state.messages:
 
 # Function for generating LLM response
 def generate_response(prompt, hf_token):
-    headers = {"Authorization": f"Bearer {hf_token}"}
+    headers = {"Accept" : "application/json",
+               "Authorization": f"Bearer {hf_token}",
+              "Content-Type": "application/json" }
     API_URL = "https://lucom7fjkrjfxwyk.us-east-1.aws.endpoints.huggingface.cloud" 
     prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
               "param_grid": {"max_tokens": 1000, "temperature": 0.6},
