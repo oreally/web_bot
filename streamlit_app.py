@@ -15,7 +15,7 @@ with st.sidebar:
         hf_token = st.secrets['HF_TOKEN']
         st.success('Jetzt chatten!', icon='👉')
         
-    st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
+    # st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
 
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
