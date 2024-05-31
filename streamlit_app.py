@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 
+# https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/
 st.set_page_config(page_title="💬 Web Bot")
 
 with st.sidebar:
