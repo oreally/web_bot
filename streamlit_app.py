@@ -35,7 +35,7 @@ def generate_response(prompt, hf_token):
     prompt_input = {"inputs": f"Du bist ein hilfreicher Assistent. USER: {prompt} ASSISTANT:",
                       "parameters": {
                     		"temperature": 0.6,
-                    		"max_new_tokens": 500
+                    		"max_new_tokens": 800
                     	},
                       "options": {"wait_for_model": True}}
     response = requests.post(API_URL, headers=headers, json=prompt_input)
