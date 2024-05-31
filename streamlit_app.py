@@ -5,7 +5,6 @@ st.set_page_config(page_title="💬 Web Bot")
 
 with st.sidebar:
     st.title('💬 Web Bot')
-    st.markdown(st.secrets)
     # if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
     #     st.success('Login erfolgreich!', icon='✅')
     #     hf_email = st.secrets['EMAIL']
